@@ -1,0 +1,36 @@
+.profile-view-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Adjusted minimum height */
+  background-color: rgb(165, 112, 240); /* Light background color */
+}
+
+.profileview {
+  width: 100%;
+  max-width: 900px; /* Increased maximum width */
+  padding: 60px; /* Reduced padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #d8c6f5; /* Light purple box color */
+  text-align: center;
+  color: black; /* Black text color for the entire container */
+}
+
+.profileview button {
+  margin-top: 20px;
+}
+
+.profileview button svg {
+  margin-right: 5px;
+  color:black;
+
+}
+
+/* Adjust input field width */
+.profileview input,
+.profileview textarea {
+  width: 60%;
+  height: 50px;
+  color:black; /* Make input fields take up full width */
+}

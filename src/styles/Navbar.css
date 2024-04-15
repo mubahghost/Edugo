@@ -1,0 +1,56 @@
+/* Navbar container styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  background-color: #8b11d1; /* Purple background for visibility */
+  color: white; /* Text color */
+}
+
+/* Logo and text container */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none; /* Remove underline from logo and text */
+  color: white; /* Ensures text is white */
+}
+
+/* Logo image styling */
+.navbarLogo {
+  height: 60px;
+  padding-left: 200px;
+}
+
+/* EDUGO text styling next to the logo */
+.logoText {
+  font-size: 35px; /* Example font size */
+  font-weight: bold; /* Makes the text bold */
+}
+
+/* Adjusted right-side navigation styling for horizontal layout */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+  padding-right: 50px; /* Space between navigation items */
+}
+
+/* Style adjustments for links to ensure consistency and clarity */
+.links a {
+  color: white; /* Ensures link text is white */
+  text-decoration: none; 
+  font-size: 17px; /* Sets font size */
+  transition: color 0.3s; /* Smooth transition for color change */
+}
+
+/* Hover effect for links */
+.links a:hover {
+  color: #be8cf0; /* Change link color on hover */
+}
+
+/* Prevent link highlighting */
+.links a:focus, .links a:active {
+  outline: none; /* Remove outline on focus */
+}

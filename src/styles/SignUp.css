@@ -1,0 +1,52 @@
+.signup-container {
+    display: flex;
+    align-items: center; /* Center the items vertically */
+    justify-content: center;
+    min-height: 40vh;
+    padding-top: 20px;
+}
+
+.signup-screen {
+    display: flex; /* Enable flex layout */
+    align-items: center; /* Align items vertically */
+    background: linear-gradient(90deg, #9b1fa7, #7C78B8);
+    width: 90%;
+    max-width: 1000px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.signup-content {
+    flex: 1; /* Takes up only the necessary space */
+    display: flex;
+    align-items: center;
+}
+
+.signup-image-container {
+    flex: 1; /* Equal flex basis as the form to balance space */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+}
+
+.signup-image {
+    max-width: 100%; /* Ensure the image is responsive */
+    max-height: 400px; /* Maximum height of the image */
+    border-radius: 8px; /* Optional: rounded corners for the image */
+}
+.signup-input {
+    width: 400px;
+    padding: 18px; /* Increased padding for a larger field */
+    font-size: 16px; /* Increased font size for better readability */
+    border-radius: 10px; /* Slightly larger border-radius */
+    border: 1px solid #ccc;
+    background: #fafafa;
+    color: #333;
+}
+
+.field-group {
+    width: 100%;
+    margin-bottom: 20px; /* Increased spacing between fields */
+}

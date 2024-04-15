@@ -1,0 +1,32 @@
+.subject-card {
+  flex: 1; /* Allow cards to grow and fill the space */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between; /* Distribute space around items */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  padding: 0px; /* Add padding around the card */
+  text-align: center; /* Center the text */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add a subtle shadow */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+  width: 250px; /* Specify width */
+  height: 300px; /* Specify height */
+}
+
+.subject-card:hover {
+  color: #000; /* Change text color on hover */
+}
+
+@media (max-width: 768px) {
+  .subjects-container {
+    flex-direction: column; /* Stack items vertically on small screens */
+  }
+  .subject-card {
+    width: 100%; /* Full width cards on small screens */
+    height: auto; /* Auto height for fluidity on small screens */
+    max-width: none; /* Remove any max-width */
+  }
+}
+
+.modal-body, .modal-body * {
+  color: black !important; /* Ensures all text is black, overrides other styles */
+}

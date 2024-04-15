@@ -1,0 +1,12 @@
+.menuImg {
+  background-image: url('../assets/menuImg.jpg');
+    background-size: cover;
+    position: fixed; /* Use fixed or absolute positioning */
+    top: 0; /* Align to the top of the viewport */
+    left: 0; /* Align to the left of the viewport */
+    width: 256px; /* Adjust the width as needed */
+    height: 100vh; 
+    margin-top:96px ;/* Cover the entire viewport height */
+    z-index: -1; /* Ensure it does not overlap content, adjust as needed */
+  }
+    

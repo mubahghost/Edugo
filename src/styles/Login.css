@@ -1,0 +1,80 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    background: linear-gradient(90deg, #9b1fa7, #7C78B8);
+margin-top: 50px;}
+
+body{
+    
+    background: linear-gradient(90deg, #9f2bcd, #b269c7);
+
+}
+
+.screen {
+    display: flex; /* Enable flex layout */
+    align-items: center; /* Align items vertically */
+    width: 90%;
+    max-width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0px;
+    margin: auto;
+}
+
+.screen__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login__field {
+    width: 100%;
+    margin-bottom: 20px; /* Increased spacing between fields */
+}
+
+.login__input {
+    width: 100%;
+    padding: 18px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    color: #333;
+    margin-bottom: 15px; /* Added space below each input */
+}
+
+.login-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-image {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+}
+/* Consistent button styling */
+.login__submit, .signup-button {
+    width: 200px; /* Fixed width for both buttons */
+    height: 50px; /* Fixed height for both buttons */
+    margin-bottom: 10px; /* Space between buttons */
+    display: flex; /* Use flex to center content */
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+    text-align: center; /* Ensures text is centered in case of wrapping */
+    padding: 0; /* Remove padding to avoid affecting the size */
+  }
+  
+  /* Button container adjustments */
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  

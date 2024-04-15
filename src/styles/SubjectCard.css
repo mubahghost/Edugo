@@ -1,0 +1,60 @@
+.subjects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center cards horizontally */
+  align-items: flex-start; /* Align cards to the top */
+  gap: 20px; /* Space between cards */
+  padding: 20px; /* Padding inside the container */
+  margin: 20px auto; /* Margin top and bottom, auto horizontally */
+  max-width: 800px; /* Maximum width of the container */
+}
+
+.subject-card {
+  cursor: pointer;
+  width: 150px; /* Adjusted width for smaller cards */
+  margin: 10px; /* Margin around cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space between content and buttons */
+}
+
+/* Adjust icon size if necessary */
+.icon {
+  width: 100%;
+  height: auto; /* Automatic height for the icon */
+  object-fit: cover;
+}
+
+/* Adjust padding and text sizes within the card for the smaller size */
+.subject-card .card-body {
+  padding: 0rem; /* Padding inside the card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space between content and buttons */
+}
+
+.subject-card .card-body .btn {
+  padding: 0.375rem 0.75rem; /* Padding for buttons */
+  font-size: 0.875rem; /* Font size for buttons */
+  margin-top: 0.5rem; /* Space above buttons */
+}
+
+.subject-card .card-title {
+  font-size: 0.9rem; /* Adjusted font size for card title */
+  margin-bottom: 0.5rem; /* Space below card title */
+}
+
+.subject-card .card-text {
+  font-size: 0.8rem; /* Adjusted font size for card text */
+}
+
+@media (max-width: 50px) {
+  .subjects-container {
+    justify-content: center;
+  }
+  .subject-card {
+    width: 100%; /* Full width cards on small screens */
+    max-width: 300px; /* Maximum width of cards on small screens */
+  }
+}

@@ -1,0 +1,76 @@
+/* Your existing styles */
+
+/* Making the quiz container larger */
+.card {
+  width: 1000px; /* Adjust the width as desired */
+  height: 500px; /* Adjust the height as desired */
+  margin: auto; /* Centers the card */
+  display: flex;
+  flex-direction: column; /* Ensures the content is laid out in a column */
+}
+
+/* Styles for the title/header */
+.card-header {
+  background-color: #f5f5f5;
+}
+
+/* Styling the list group to handle overflow if the card content is too long */
+.list-group {
+  overflow-y: 0; /* Adds a scrollbar if the content overflows */
+}
+
+/* Styling for the question text */
+.card-title {
+  font-size: 1.25rem; /* Adjust the font size as needed */
+  margin-bottom: 0.5rem; /* Space below the title */
+}
+
+/* Additional padding for the card body for a better layout */
+.card-body {
+  padding: 1rem;
+  flex-grow: 1; /* Allows the body to grow and fill available space */
+}
+
+/* Adjust the size and style of the Prev/Next buttons */
+.card-footer button {
+  margin: 0 0.5rem; /* Space between buttons */
+}
+
+/* Ensure buttons fit within the footer if the card size is fixed */
+.card-footer {
+  display: flex;
+  justify-content: center; /* Centers the buttons */
+}
+
+/* You may want to adjust the style of the active (selected) answer option */
+.list-group-item.active {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Add media queries if responsiveness is desired */
+@media (max-width: 768px) {
+  .card {
+    width: 90%; /* Takes more screen space on smaller screens */
+    height: auto; /* Height becomes flexible on smaller screens */
+  }
+}
+/* Your existing styles */
+
+.list-group-item {
+  cursor: pointer; /* Makes items look clickable */
+  transition: background-color 0.2s; /* Smooth transition for the background color */
+}
+
+.list-group-item:not(.active):hover {
+  background-color: #007bff; /* Highlight color when hovered */
+  color: white; /* Text color when hovered */
+}
+
+/* Styles for the active (selected) answer option */
+.list-group-item.active {
+  background-color: #0056b3; /* Darker blue for the selected item */
+  color: white;
+  border-color: #0056b3;
+}

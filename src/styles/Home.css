@@ -1,0 +1,62 @@
+/* Home.css */
+
+/* Sticky Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020; /* Higher than the carousel but below modal */
+}
+
+/* Modal Styling */
+.modal-header {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Additional styles for Cards, Accordion, and Animation on Scroll */
+.card {
+  margin: 20px 0;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 180px; /* Adjust based on your design */
+  object-fit: cover;
+}
+
+.accordion-item {
+  background-color: #f8f9fa;
+  border: 1px solid #ebebeb;
+}
+
+
+.carousel-item {
+  height: 500px; /* Fixed height for all carousel items */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will cover the area without stretching the image */
+}
+
+.welcome-message {
+  font-size: px; /* Adjust the size as needed */
+  font-weight: bold; /* Makes the welcome message bold */
+}
+
+.welcome-description {
+  font-size: 30px; /* Adjust the size as needed */
+  margin-bottom: 1rem; /* Provides spacing below the paragraph */
+}
+body{
+  background: linear-gradient(90deg, #b33ca1, #b269c7);
+
+}
+.page-title {
+  color: white; /* Sets the font color to white */
+  font-size: 40px; /* Increases the font size */
+  font-weight: bold; 
+  padding-right: 30px;
+padding-left: 50px}
+
