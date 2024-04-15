@@ -33,13 +33,14 @@ function Navbar({ user }) {
                                 <Link to="/ContentPageAdmin">Content Page Admin</Link>
                                 <Link to="/SubjectsAdmin">Subjects Admin</Link>
                                 <Link to="/ProfilePage">Profile Page</Link>
-
                             </>
                         )}
                         {user.role === 'student' && (
                             <>
                                 <Link to="/Subjects">Subjects</Link>
                                 <Link to="/ContentPage">Content Page</Link>
+                                <Link to="/Quiz">Quiz</Link>
+                                <Link to="/ProfilePage">Profile Page</Link>
                             </>
                         )}
                         <span className="logoutButton" onClick={handleLogout}>Logout</span>
@@ -49,7 +50,6 @@ function Navbar({ user }) {
                         <Link to="/Login">Login</Link>
                         <Link to="/SignUp">SignUp</Link>
                         <Link to="/ProfilePage">Profile Page</Link>
-
                     </>
                 )}
             </div>
