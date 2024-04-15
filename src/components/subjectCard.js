@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card, Tooltip, OverlayTrigger, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import { Route } from 'react-router-dom'; // Import Route
-import "../styles/SubjectCard.css";
+import "../styles/subjectCardcustom.css";
 
 const SubjectCard = ({ title, summary, icon, link }) => {
   // Tooltip component

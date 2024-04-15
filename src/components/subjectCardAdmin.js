@@ -3,8 +3,6 @@ import { Card, Button } from 'react-bootstrap';
 // Make sure the path is correct and that SubjectCard.css exists in the specified directory.
 import "../styles/SubjectCard.css";
 
-// Your React component code follows here...
-
 const SubjectCardAdmin = ({ id, title, summary, icon, className, link, onEdit, onRemove }) => {
   return (
     <Card className={`subject-card ${className}`}>

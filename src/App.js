@@ -7,7 +7,7 @@ import Subjects from './pages/Subjects';
 import SubjectsAdmin from './pages/SubjectsAdmin';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
-import ProfilePage from './components/ProfilePage';
+import ProfilePage from './components/ProfilePage'; // Import ProfilePage component
 import GettingStarted from './pages/GettingStarted';
 import Contact from './components/Contact';
 import ContentPage from "./components/ContentPage";
@@ -62,11 +62,10 @@ function App() {
         <Route path="/Login" element={user ? <Navigate to="/" replace /> : <Login />} />
         <Route path="/SignUp" element={user ? <Navigate to="/" replace /> : <SignUp />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/ProfilePage" element={user ? <ProfilePage /> : <Navigate to="/Login" replace />} /> {/* Add ProfilePage route */}
         <Route path="/ContentPage" element={user ? <ContentPage /> : <Navigate to="/Login" replace />} />
         <Route path="/ContentPageAdmin" element={user && user.role === 'admin' ? <ContentPageAdmin /> : <Navigate to="/" replace />} />
         <Route path="/GettingStarted" element={<GettingStarted />} />
-        <Route path="/ProfilePage" element={<ProfilePage />} />
-      
 
         <Route path="/Subjects" element={<Subjects />} />
 
@@ -74,7 +73,6 @@ function App() {
           <Route path="/SubjectsAdmin" element={<SubjectsAdmin />} />
         )}
 
-        {/* Add the route for TeacherDashboard */}
         {user && user.role === 'admin' && (
           <Route path="/TeacherDashboard" element={<TeacherDashboard />} />
         )}

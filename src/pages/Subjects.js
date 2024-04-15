@@ -4,7 +4,6 @@ import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase'; // Assuming you have a Firebase configuration file
 import SubjectCard from '../components/subjectCard'; // Import the SubjectCard component
 import "../styles/SubjectCard.css";
-import '../styles/Subjects.css'; // Adjust path as needed
 
 const Subjects = () => {
   const [subjects, setSubjects] = useState([]);

@@ -5,8 +5,6 @@ import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestor
 import { db } from '../firebase';
 import '../styles/ContentPage.css'; // Adjust path as needed
 
-
-
 const ContentPage = () => {
   const [fileURL, setFileURL] = useState('');
   const [fileName, setFileName] = useState('');

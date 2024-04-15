@@ -48,6 +48,8 @@ function Navbar({ user }) {
                     <>
                         <Link to="/Login">Login</Link>
                         <Link to="/SignUp">SignUp</Link>
+                        <Link to="/ProfilePage">Profile Page</Link>
+
                     </>
                 )}
             </div>

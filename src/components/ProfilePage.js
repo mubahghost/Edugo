@@ -31,14 +31,14 @@ const ProfilePage = ({ user }) => {
     }
   }, [user]);
 
-  // Add error handling for null user
-  if (!user) {
-    return <div>User not logged in.</div>;
-  }
-
   // Add loading state check
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  // Check if user is logged in
+  if (!user) {
+    return <div>User not logged in.</div>;
   }
 
   // Add debug log for userData
