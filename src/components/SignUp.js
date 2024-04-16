@@ -17,6 +17,8 @@ function SignUp() {
   const [schools] = useState(["School A", "School B", "Institute A", "Institute B"]);
   const navigate = useNavigate();
 
+  const emailRegex = /^\S+@\S+\.\S+$/;
+
   const fetchStudents = async () => {
     try {
       const studentsQuery = query(collection(firestore, "users"), where("role", "==", "student"));
@@ -31,6 +33,10 @@ function SignUp() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address");
+      return;
+    }
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
@@ -105,7 +111,7 @@ function SignUp() {
               <select className="signup-input" value={role} onChange={e => setRole(e.target.value)} required>
                 <option value="" disabled>Select Role</option>
                 <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
+                <option value="admin">Teacher</option>
                 {/* Include more roles if necessary */}
               </select>
             </div>

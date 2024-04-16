@@ -1,128 +1,125 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
-import { firestore, storage } from '../firebase';
-import '../styles/ProfilePage.css';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import '../styles/ProfilePage.css'; // Ensure this path is correct
 
-const ProfilePage = ({ user }) => {
-  const [userData, setUserData] = useState({
-    firstName: '',
-    lastName: '',
+const ProfilePage = () => {
+  const [userProfile, setUserProfile] = useState({
+    dob: '',
     email: '',
-    bio: '',
-    profilePicUrl: '',
-    quizResults: [],
-    institute: '',
+    fileOwner: '',
+    name: '',
+    phone: '',
     role: '',
+    school: '',
+    userID2: '',
   });
+  const [profileImageUrl, setProfileImageUrl] = useState('default_profile_picture.png');
   const [loading, setLoading] = useState(true);
-  const [profilePic, setProfilePic] = useState(null);
-  const [error, setError] = useState(null);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+  const [editing, setEditing] = useState(false); // State to control edit mode
+
+  const auth = getAuth();
+  const firestore = getFirestore();
+  const storage = getStorage();
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setLoading(true);
-        try {
-          const userRef = firestore.collection('users').doc(user.uid);
-          const doc = await userRef.get();
-          if (doc.exists) {
-            setUserData(doc.data());
-          } else {
-            console.log('No such document for user:', user.uid);
+        const userRef = doc(firestore, 'users', user.uid);
+        getDoc(userRef).then((docSnapshot) => {
+          if (docSnapshot.exists()) {
+            const userData = docSnapshot.data();
+            setUserProfile(userData);
+            if (userData.fileOwner) {
+              const imageRef = ref(storage, `profile_images/${userData.fileOwner}`);
+              getDownloadURL(imageRef).then(setProfileImageUrl).catch(console.error);
+            }
           }
-        } catch (error) {
-          console.error('Error getting document:', error);
-          setError('Failed to fetch user data.');
-        }
-        setLoading(false);
+        }).catch(console.error).finally(() => setLoading(false));
       }
-    };
+    });
+    return () => unsubscribe();
+  }, [auth, firestore, storage]);
 
-    fetchUserData();
-  }, [user]);
-
-  const handleSaveClick = async () => {
-    setError(null);
-    try {
-      const userRef = firestore.collection('users').doc(user.uid);
-      await userRef.update(userData);
-      alert('User data updated successfully.');
-    } catch (error) {
-      console.error('Error updating user data:', error);
-      setError('Error updating user data.');
-    }
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setProfilePic(file);
-
-      // Validate file size and type here
-
-      // Preview the image
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreviewUrl(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleImageUpload = async () => {
-    setError(null);
-    if (profilePic) {
-      // Optimize the image here if necessary
-
-      const storageRef = storage.ref();
-      const fileRef = storageRef.child(`profile_pics/${user.uid}/${profilePic.name}`);
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file && auth.currentUser) {
+      const fileRef = ref(storage, `profile_images/${auth.currentUser.uid}`);
+      setLoading(true);
       try {
-        await fileRef.put(profilePic);
-        const imageUrl = await fileRef.getDownloadURL();
-        setUserData({ ...userData, profilePicUrl: imageUrl });
+        await uploadBytes(fileRef, file);
+        const imageUrl = await getDownloadURL(fileRef);
+        setProfileImageUrl(imageUrl);
+        await updateDoc(doc(firestore, 'users', auth.currentUser.uid), { fileOwner: auth.currentUser.uid });
         alert('Profile picture updated successfully.');
       } catch (error) {
-        console.error('Error uploading image:', error);
-        setError('Error uploading profile picture.');
+        console.error('Error uploading new profile picture:', error);
+        alert('Failed to upload new profile picture.');
+      } finally {
+        setLoading(false);
       }
+    }
+  };
+
+  const handleEdit = () => {
+    setEditing(true);
+  };
+
+  const handleSave = async () => {
+    try {
+      await updateDoc(doc(firestore, 'users', auth.currentUser.uid), userProfile);
+      setEditing(false);
+      alert('Profile updated successfully.');
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      alert('Failed to update profile.');
     }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData({
-      ...userData,
+    setUserProfile((prevProfile) => ({
+      ...prevProfile,
       [name]: value,
-    });
+    }));
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <Container>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <div className="profile-container">
-        <div className="profile-details">
-          <div className="profile-pic-container">
-            <img src={imagePreviewUrl || userData.profilePicUrl || 'default_profile_pic.png'} alt="Profile" className="profile-pic" />
-            <input type="file" onChange={handleImageChange} />
-            <Button variant="primary" onClick={handleImageUpload}>Upload Profile Picture</Button>
+    <div className="container emp-profile">
+      <div className="image">
+        <img src={profileImageUrl} alt={userProfile.name || 'Profile'} className="profile-img"/>
+        {editing && (
+          <div>
+            <input type="file" name="file" onChange={handleFileChange} id="upload-button" style={{ display: 'none' }} />
+            <label htmlFor="upload-button" className="profile-pic-container button">Change Photo</label>
           </div>
-          <h2>{userData.firstName} {userData.lastName}</h2>
-          <p>Email: {userData.email}</p>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            name="bio"
-            placeholder="Bio"
-            value={userData.bio}
-            onChange={handleChange}
-          />
-          <Button variant="primary" onClick={handleSaveClick}>
-            Save Changes
-          </Button>
-        </div>
+        )}
       </div>
-    </Container>
+      <div className="text">
+        {editing ? (
+          <>
+            <input type="text" name="name" value={userProfile.name} onChange={handleChange} />
+            <input type="text" name="role" value={userProfile.role} onChange={handleChange} />
+            <input type="text" name="school" value={userProfile.school} onChange={handleChange} />
+            <button onClick={handleSave}>Save</button>
+          </>
+        ) : (
+          <>
+            <h5 className="text1">Name: {userProfile.name}</h5>
+            <h6 className="text1">Role: {userProfile.role}</h6>
+            <p className="text1">SCHOOL: <span>{userProfile.school}</span></p>
+            <button onClick={handleEdit}>Edit</button>
+          </>
+        )}
+        {/* Display additional fields here */}
+      </div>
+      {/* More JSX to display other user details */}
+    </div>
   );
 };
 

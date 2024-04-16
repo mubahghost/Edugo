@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import '../styles/Login.css'; // Adjust path as needed
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase";
 import loginImage from '../assets/login.png'; // Ensure this path is correct
 
@@ -11,6 +11,7 @@ function Login() {
     const passwordRef = useRef(null);
     const navigate = useNavigate();
     const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -22,6 +23,20 @@ function Login() {
             navigate('/profile'); // Redirect to profile page on successful login
         } catch (error) {
             setError("Login failed: " + error.message); // Display error message
+        }
+    };
+
+    const handleForgotPassword = async () => {
+        const email = emailRef.current.value;
+        if (!email) {
+            alert("Please enter your email address.");
+            return;
+        }
+        try {
+            await sendPasswordResetEmail(auth, email);
+            setMessage("Password reset email sent. Please check your email inbox."); // Display success message
+        } catch (error) {
+            setError("Failed to send password reset email: " + error.message); // Display error message
         }
     };
 
@@ -43,7 +58,11 @@ function Login() {
                                 <Button type="submit" variant="primary" className="login__submit">
                                     Log In Now
                                 </Button>
+                                <Button onClick={handleForgotPassword} variant="primary" className="login__submit">
+                                    Forgot Password?
+                                </Button>
                                 {error && <div className="error-message">{error}</div>}
+                                {message && <div className="success-message">{message}</div>}
                                 <Link to="/signup">
                                     <Button variant="primary" className="login__submit">
                                         SignUp
