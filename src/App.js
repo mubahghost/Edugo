@@ -7,13 +7,13 @@ import Subjects from './pages/Subjects';
 import SubjectsAdmin from './pages/SubjectsAdmin';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
-import ProfilePage from './components/ProfilePage'; // Import ProfilePage component
+import ProfilePage from './components/ProfilePage'; 
 import GettingStarted from './pages/GettingStarted';
 import Contact from './components/Contact';
 import ContentPage from "./components/ContentPage";
 import ContentPageAdmin from './components/ContentPageAdmin';
 import Quiz from './components/Quiz';
-import TeacherDashboard from './components/teacherDashboard'; // Import TeacherDashboard component
+import TeacherDashboard from './components/teacherDashboard';
 import { auth, firestore } from "./firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
