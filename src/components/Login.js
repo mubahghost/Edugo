@@ -20,9 +20,9 @@ function Login() {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            navigate('/profile'); // Redirect to profile page on successful login
+            navigate('/profile'); 
         } catch (error) {
-            setError("Login failed: " + error.message); // Display error message
+            setError("Login failed: " + error.message); 
         }
     };
 
@@ -34,9 +34,9 @@ function Login() {
         }
         try {
             await sendPasswordResetEmail(auth, email);
-            setMessage("Password reset email sent. Please check your email inbox."); // Display success message
+            setMessage("Password reset email sent. Please check your email inbox."); 
         } catch (error) {
-            setError("Failed to send password reset email: " + error.message); // Display error message
+            setError("Failed to send password reset email: " + error.message);
         }
     };
 

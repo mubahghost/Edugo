@@ -21,8 +21,7 @@ const HomePage = () => {
     if (!isLoggedIn) {
       setShowModal(true);
     } else {
-      // Redirect to the sign-up page
-      window.location.href = "/SignUp"; // Replace with the correct path
+      window.location.href = "/SignUp"; 
     }
   };
 

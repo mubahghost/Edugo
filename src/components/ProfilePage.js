@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import '../styles/ProfilePage.css'; // Ensure this path is correct
+import '../styles/ProfilePage.css'; 
 
 const ProfilePage = () => {
   const [userProfile, setUserProfile] = useState({
@@ -17,7 +17,7 @@ const ProfilePage = () => {
   });
   const [profileImageUrl, setProfileImageUrl] = useState('default_profile_picture.png');
   const [loading, setLoading] = useState(true);
-  const [editing, setEditing] = useState(false); // State to control edit mode
+  const [editing, setEditing] = useState(false); 
 
   const auth = getAuth();
   const firestore = getFirestore();
@@ -116,9 +116,7 @@ const ProfilePage = () => {
             <button onClick={handleEdit}>Edit</button>
           </>
         )}
-        {/* Display additional fields here */}
       </div>
-      {/* More JSX to display other user details */}
     </div>
   );
 };

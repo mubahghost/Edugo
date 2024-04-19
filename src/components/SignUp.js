@@ -24,8 +24,7 @@ function SignUp() {
       const studentsQuery = query(collection(firestore, "users"), where("role", "==", "student"));
       const querySnapshot = await getDocs(studentsQuery);
       const studentsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      console.log(studentsList); // For debugging: check the fetched students in the console
-      // Here you might want to set this data to the state or context
+      console.log(studentsList); 
     } catch (error) {
       console.error('Error fetching students:', error);
     }
@@ -61,7 +60,7 @@ function SignUp() {
         await fetchStudents();
       }
 
-      navigate('/profile'); // Redirect to the profile page on successful registration
+      navigate('/profile'); 
     } catch (error) {
       alert("Error during registration: " + error.message);
     }

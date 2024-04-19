@@ -3,10 +3,8 @@ import { Button, Modal } from 'react-bootstrap';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 import { storage, db, auth } from '../firebase';
-// Make sure the path is correct and that SubjectCard.css exists in the specified directory.
 import "../styles/SubjectCard.css";
 
-// Your React component code follows here...
 
 const ContentPageAdmin = () => {
   const [showModal, setShowModal] = useState(false);
