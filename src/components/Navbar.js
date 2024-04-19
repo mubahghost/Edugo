@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
-import LogoImage from '../assets/Logo.png'; // Ensure this path is correct
+import LogoImage from '../assets/Logo.png'; 
 import { signOut } from "firebase/auth";
 import { auth } from '../firebase';
 
@@ -33,6 +33,9 @@ function Navbar({ user }) {
                                 <Link to="/ContentPageAdmin">Content Page Admin</Link>
                                 <Link to="/SubjectsAdmin">Subjects Admin</Link>
                                 <Link to="/ProfilePage">Profile Page</Link>
+                                <Link to="/teacherDashboard">TeacherDashboard</Link>
+
+                                
                             </>
                         )}
                         {user.role === 'student' && (
