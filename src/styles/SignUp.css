@@ -1,52 +1,76 @@
+/* SignUp.css */
 .signup-container {
     display: flex;
-    align-items: center; /* Center the items vertically */
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    min-height: 40vh;
-    padding-top: 20px;
-}
-
-.signup-screen {
-    display: flex; /* Enable flex layout */
-    align-items: center; /* Align items vertically */
+    min-height: 80vh;
+    background: linear-gradient(90deg, #9f2bcd, #b269c7);
+  }
+  
+  .signup-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: linear-gradient(90deg, #9b1fa7, #7C78B8);
     width: 90%;
-    max-width: 1000px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin: auto;
+    max-width: 1250px; /* Increased the max-width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px; /* Added more padding */
     border-radius: 10px;
-}
-
-.signup-content {
-    flex: 1; /* Takes up only the necessary space */
+    margin: auto; /* Centers the screen */
+  }
+  
+  .signup-content {
+    width: 100%; /* Ensures that the content takes the full width of the parent */
+  }
+  
+  .signup-image-container {
     display: flex;
+    justify-content: center;
     align-items: center;
-}
-
-.signup-image-container {
-    flex: 1; /* Equal flex basis as the form to balance space */
-    display: flex;
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
-}
-
-.signup-image {
-    max-width: 100%; /* Ensure the image is responsive */
-    max-height: 400px; /* Maximum height of the image */
-    border-radius: 8px; /* Optional: rounded corners for the image */
-}
-.signup-input {
-    width: 400px;
-    padding: 18px; /* Increased padding for a larger field */
-    font-size: 16px; /* Increased font size for better readability */
-    border-radius: 10px; /* Slightly larger border-radius */
+    margin-top: 20px; /* Adds space between the form and image */
+  }
+  
+  .signup-image {
+    max-width: 100%; /* Makes the image responsive */
+    max-height: 300px; /* Limits the image height */
+    border-radius: 8px; /* Adds rounded corners to the image */
+  }
+  
+  .signup-input {
+    width: 160px; /* Full width minus padding */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
     border: 1px solid #ccc;
     background: #fafafa;
     color: #333;
-}
-
-.field-group {
-    width: 100%;
-    margin-bottom: 20px; /* Increased spacing between fields */
-}
+    margin-bottom: 20px; /* Adds space between input fields */
+  }
+  
+  .field-group {
+    width: 100%; /* Full width to stack vertically */
+  }
+  
+  .buttons-right {
+    width: 100%; 
+    padding:20px;
+    display: flex;
+    justify-content: center; /* Centers the button */
+  }
+  
+  .signup-button {
+    padding: 10px 20px;
+    background-color: #4a148c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    position: absolute; /* Position the button over the image */
+    top: 100px; /* Adjust as needed to position above the image */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  

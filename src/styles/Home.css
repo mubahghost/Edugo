@@ -6,6 +6,10 @@
   top: 0;
   z-index: 1020; /* Higher than the carousel but below modal */
 }
+.card-img {
+  width: 100%; /* Make sure image is not wider than the card */
+  height: auto; /* Maintain aspect ratio */
+}
 
 /* Modal Styling */
 .modal-header {
@@ -14,12 +18,9 @@
 }
 
 /* Additional styles for Cards, Accordion, and Animation on Scroll */
-.card {
-  margin: 20px 0;
-}
 
 .card-img-top {
-  width: 100%;
+  width: 80%;
   height: 180px; /* Adjust based on your design */
   object-fit: cover;
 }
@@ -60,3 +61,23 @@ body{
   padding-right: 30px;
 padding-left: 50px}
 
+/* Other styles */
+
+/* Ensure images in the modal cards fit their containers */
+.card-img-top {
+  width: 100%; /* Make sure image is not wider than the card */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Adjust modal body padding to ensure consistent spacing */
+.modal-body {
+  padding: 15px; /* You can adjust this value as needed */
+}
+
+/* You may also want to adjust the Row's negative margins if using Bootstrap 5 */
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* Rest of your styles */

@@ -1,46 +1,85 @@
-/* ContactUs.css */
-.contact-us-container {
-  max-width: 500px;
-  margin-top: 60px;
-  margin-left: 600px;
-  padding:10px;
-  box-shadow: 0 0 10px rgba(242, 11, 11, 0.1);
-  padding-top: 80px;
-  background: linear-gradient(90deg, #e18fa2, #b269c7);
-
+.contact-page {
+  background: linear-gradient(90deg, #9f2bcd, #b269c7);
+  padding: 50px 0; /* Top and bottom padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+.contact-title {
+  font-size: 2.5rem;
+  color: white; /* Text color changed to white */
+  margin-bottom: 30px;
+  margin-left: 600px;
+}
 
-.form-group {
+.contact-form-container {
+  background: white; /* Container background changed to white */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
   margin-bottom: 20px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
+.contact-form input,
+.contact-form textarea {
+  padding: 15px;
   border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  width: 100%;
+  background: white; /* Input fields background changed to white */
+  color: #333; /* Input text color */
 }
 
-.form-group textarea {
-  height: 150px;
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #aaa; /* Placeholder text color */
 }
 
-button[type="submit"] {
-  background-color: #007bff;
+.contact-form textarea {
+  resize: vertical; /* Allow only vertical resizing */
+  min-height: 150px; /* Minimum height */
+}
+
+.submit-btn {
+  background-color: #5c6bc0; /* Indigo color */
   color: white;
+  padding: 15px 20px;
   border: none;
-  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover {
-  background-color: #0056b3;
+.submit-btn:hover {
+  background-color: #3f51b5; /* Darker indigo on hover */
+}
+
+@media (max-width: 768px) {
+  .contact-form-container {
+    padding: 20px;
+  }
+}
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 1.5rem;
+  background-color: #534be6;
+  padding: 5px 0;
+  margin: 0 auto 15px auto;
+  width: 30%;
+  box-sizing: border-box;
 }
