@@ -2,22 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import '../styles/ProfilePage.css'; 
+import '../styles/ProfilePage.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap is imported
 
 const ProfilePage = () => {
   const [userProfile, setUserProfile] = useState({
-    dob: '',
     email: '',
-    fileOwner: '',
-    name: '',
     phone: '',
-    role: '',
     school: '',
-    userID2: '',
   });
   const [profileImageUrl, setProfileImageUrl] = useState('default_profile_picture.png');
   const [loading, setLoading] = useState(true);
-  const [editing, setEditing] = useState(false); 
+  const [editing, setEditing] = useState(false);
 
   const auth = getAuth();
   const firestore = getFirestore();
@@ -29,16 +25,19 @@ const ProfilePage = () => {
         const userRef = doc(firestore, 'users', user.uid);
         getDoc(userRef).then((docSnapshot) => {
           if (docSnapshot.exists()) {
-            const userData = docSnapshot.data();
-            setUserProfile(userData);
-            if (userData.fileOwner) {
-              const imageRef = ref(storage, `profile_images/${userData.fileOwner}`);
+            const { email, phone, school, fileOwner } = docSnapshot.data();
+            setUserProfile({ email, phone, school });
+            if (fileOwner) {
+              const imageRef = ref(storage, `profile_images/${fileOwner}`);
               getDownloadURL(imageRef).then(setProfileImageUrl).catch(console.error);
+            } else {
+              setProfileImageUrl('default_profile_picture.png');
             }
           }
         }).catch(console.error).finally(() => setLoading(false));
       }
     });
+
     return () => unsubscribe();
   }, [auth, firestore, storage]);
 
@@ -67,22 +66,26 @@ const ProfilePage = () => {
   };
 
   const handleSave = async () => {
+    setLoading(true);
     try {
-      await updateDoc(doc(firestore, 'users', auth.currentUser.uid), userProfile);
+      await updateDoc(doc(firestore, 'users', auth.currentUser.uid), {
+        email: userProfile.email,
+        phone: userProfile.phone,
+        school: userProfile.school,
+      });
       setEditing(false);
       alert('Profile updated successfully.');
     } catch (error) {
       console.error('Error updating profile:', error);
       alert('Failed to update profile.');
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserProfile((prevProfile) => ({
-      ...prevProfile,
-      [name]: value,
-    }));
+    setUserProfile(prev => ({ ...prev, [name]: value }));
   };
 
   if (loading) {
@@ -91,29 +94,29 @@ const ProfilePage = () => {
 
   return (
     <div className="container emp-profile">
-      <div className="image">
-        <img src={profileImageUrl} alt={userProfile.name || 'Profile'} className="profile-img"/>
+      <div className="profile-img-container">
+        <img src={profileImageUrl} alt="Profile" className="profile-img"/>
         {editing && (
-          <div>
-            <input type="file" name="file" onChange={handleFileChange} id="upload-button" style={{ display: 'none' }} />
-            <label htmlFor="upload-button" className="profile-pic-container button">Change Photo</label>
-          </div>
+          <>
+            <input type="file" accept="image/*" onChange={handleFileChange} id="file-input" style={{ display: 'none' }} />
+            <label htmlFor="file-input" className="btn btn-secondary btn-sm mt-2">Change Photo</label>
+          </>
         )}
       </div>
-      <div className="text">
+      <div className="text text-white">
         {editing ? (
           <>
-            <input type="text" name="name" value={userProfile.name} onChange={handleChange} />
-            <input type="text" name="role" value={userProfile.role} onChange={handleChange} />
-            <input type="text" name="school" value={userProfile.school} onChange={handleChange} />
-            <button onClick={handleSave}>Save</button>
+            <input type="email" name="email" value={userProfile.email} onChange={handleChange} className="form-control mb-2"/>
+            <input type="text" name="phone" value={userProfile.phone} onChange={handleChange} className="form-control mb-2"/>
+            <input type="text" name="school" value={userProfile.school} onChange={handleChange} className="form-control mb-2"/>
+            <button onClick={handleSave} className="btn btn-primary">Save</button>
           </>
         ) : (
           <>
-            <h5 className="text1">Name: {userProfile.name}</h5>
-            <h6 className="text1">Role: {userProfile.role}</h6>
-            <p className="text1">SCHOOL: <span>{userProfile.school}</span></p>
-            <button onClick={handleEdit}>Edit</button>
+            <p>Email: {userProfile.email}</p>
+            <p>Phone: {userProfile.phone}</p>
+            <p>School: {userProfile.school}</p>
+            <button onClick={handleEdit} className="btn btn-secondary">Edit</button>
           </>
         )}
       </div>

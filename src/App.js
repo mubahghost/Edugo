@@ -12,6 +12,7 @@ import GettingStarted from './pages/GettingStarted';
 import Contact from './components/Contact';
 import ContentPage from "./components/ContentPage";
 import ContentPageAdmin from './components/ContentPageAdmin';
+import ChatPage from './components/Chatpage';
 import Quiz from './components/Quiz';
 import TeacherDashboard from './components/teacherDashboard';
 import { auth, firestore } from "./firebase";
@@ -66,6 +67,7 @@ function App() {
         <Route path="/ContentPage" element={user ? <ContentPage /> : <Navigate to="/Login" replace />} />
         <Route path="/ContentPageAdmin" element={user && user.role === 'admin' ? <ContentPageAdmin /> : <Navigate to="/" replace />} />
         <Route path="/GettingStarted" element={<GettingStarted />} />
+        <Route path='/Chatpage' element={<ChatPage/>}/>
 
         <Route path="/Subjects" element={<Subjects />} />
 
