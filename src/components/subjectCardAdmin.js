@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
-// Make sure the path is correct and that SubjectCard.css exists in the specified directory.
 import "../styles/SubjectCard.css";
 
 const SubjectCardAdmin = ({ id, title, summary, icon, className, link, onEdit, onRemove }) => {
@@ -11,7 +10,7 @@ const SubjectCardAdmin = ({ id, title, summary, icon, className, link, onEdit, o
         <Card.Title>{title}</Card.Title>
         <Card.Text>{summary}</Card.Text>
         <Button variant="primary" onClick={onEdit}>Edit</Button>
-        <Button variant="danger" onClick={() => onRemove(id)}>Remove</Button> {/* Add remove button */}
+        <Button variant="danger" onClick={() => onRemove(id)}>Remove</Button> 
       </Card.Body>
     </Card>
   );

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import "../styles/subjectCardcustom.css";
 
 const SubjectCard = ({ title, summary, icon, link }) => {
-  // Tooltip component
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       {summary}
@@ -25,7 +24,7 @@ const SubjectCard = ({ title, summary, icon, link }) => {
             <Link to={`/ContentPage`}>
               <Button variant="primary">Content</Button>
             </Link>
-            <Link to={`/Quiz`}> {/* Link to Quiz page */}
+            <Link to={`/Quiz`}> 
               <Button variant="secondary">Quiz</Button>
             </Link>
           </div>

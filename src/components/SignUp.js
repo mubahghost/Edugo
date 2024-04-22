@@ -51,7 +51,7 @@ function SignUp() {
         name,
         email,
         school,
-        phone: formattedPhone,  // Store the formatted phone number in the database
+        phone: formattedPhone,  
         role,
       });
 

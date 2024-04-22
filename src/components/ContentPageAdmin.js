@@ -102,7 +102,6 @@ const ContentPageAdmin = () => {
             Your browser does not support the video tag.
           </video>
         )}
-        {/* For other file types, provide a download link */}
         {!(fileType.startsWith('image/') || fileType === 'application/pdf' || fileType.startsWith('video/')) && (
           <>
             <p>{`File: ${fileName}`}</p>

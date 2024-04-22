@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
-import '../styles/ContentPage.css'; // Make sure this path is correct
+import '../styles/ContentPage.css'; 
 
 const ContentPage = () => {
   const [fileURL, setFileURL] = useState('');

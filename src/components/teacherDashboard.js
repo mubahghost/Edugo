@@ -70,10 +70,8 @@ function TeacherDashboard() {
                 <td>{student.email}</td>
                 <td>{student.role}</td>
                 <td>
-                  {/* Here we display the score along with other quiz information */}
                   {student.quizResults.map((result, index) => (
                     <div key={index}>
-                      {/* Adjust the below line to fit the data structure of quiz results */}
                       Score: {result.score}, Date: {new Date(result.timestamp).toLocaleDateString()}
                     </div>
                   ))}

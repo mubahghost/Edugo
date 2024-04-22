@@ -31,12 +31,10 @@ const TestPage = () => {
   };
 
   const handleEdit = (subjectId) => {
-    // Implement edit functionality
     console.log("Edit clicked for subject with ID:", subjectId);
   };
 
   const handleRemove = (subjectId) => {
-    // Implement remove functionality
     console.log("Remove clicked for subject with ID:", subjectId);
   };
 

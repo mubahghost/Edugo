@@ -50,19 +50,15 @@ function SignUpAdmin() {
           <div className="screen__content">
             <form className="login" onSubmit={handleSignUp}>
               <div className="login__field">
-                <i className="login__icon fas fa-user"></i>
                 <input type="text" className="login__input" ref={emailRef} placeholder="Email" />
               </div>
               <div className="login__field">
-                <i className="login__icon fas fa-lock"></i>
                 <input type="password" className="login__input" ref={passwordRef} placeholder="Password" />
               </div>
               <div className="login__field">
-                <i className="login__icon fas fa-lock"></i>
                 <input type="password" className="login__input" ref={confirmPasswordRef} placeholder="Confirm Password" />
               </div>
               <div className="login__field">
-                <i className="login__icon fas fa-graduation-cap"></i>
                 <select className="login__input" ref={educationLevelRef}>
                   <option value="">Select Education Level</option>
                   <option value="High School">High School</option>
@@ -72,7 +68,6 @@ function SignUpAdmin() {
                 </select>
               </div>
               <div className="login__field">
-                <i className="login__icon fas fa-building"></i>
                 <select className="login__input" ref={instituteRef}>
                   <option value="">Select Institute</option>
                   <option value="Institute A">Institute A</option>
@@ -81,12 +76,10 @@ function SignUpAdmin() {
                 </select>
               </div>
               <div className="login__field">
-                <i className="login__icon fas fa-phone"></i>
                 <input type="tel" className="login__input" ref={phoneNumberRef} placeholder="Phone Number" />
               </div>
               <button className="button login__submit">
                 <span className="button__text">Sign Up</span>
-                <i className="button__icon fas fa-chevron-right"></i>
               </button>
               {error && <div className="error-message">{error}</div>}
             </form>

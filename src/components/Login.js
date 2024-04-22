@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import '../styles/Login.css'; // Adjust path as needed
+import '../styles/Login.css'; 
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase";
-import loginImage from '../assets/login.png'; // Ensure this path is correct
+import loginImage from '../assets/login.png'; 
 
 function Login() {
     const emailRef = useRef(null);
