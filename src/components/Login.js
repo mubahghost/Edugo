@@ -41,19 +41,18 @@ function Login() {
     };
 
     return (
-        <>
+        <>  
             <div className="container">
                 <div className="screen">
                     <div className="screen__content">
                         <form className="login" onSubmit={handleLogin}>
                             <div className="login__field">
-                                <i className="login__icon fas fa-user"></i>
-                                <input type="text" className="login__input" ref={emailRef} placeholder="User name / Email" />
+                                <input type="text" className="login__input" ref={emailRef} placeholder="Email" />
                             </div>
                             <div className="login__field">
-                                <i className="login__icon fas fa-lock"></i>
                                 <input type="password" className="login__input" ref={passwordRef} placeholder="Password" />
                             </div>
+                            </form>
                             <div className="buttons-container">
                                 <Button type="submit" variant="primary" className="login__submit">
                                     Log In Now
@@ -69,7 +68,7 @@ function Login() {
                                     </Button>
                                 </Link>
                             </div>
-                        </form>
+                       
                     </div>
                     <div className="login-image-container">
                         <img src={loginImage} alt="Login" className="login-image" />

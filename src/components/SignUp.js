@@ -18,6 +18,8 @@ function SignUp() {
   const navigate = useNavigate();
 
   const emailRegex = /^\S+@\S+\.\S+$/;
+  const phoneRegex = /^\d{11}$/;  
+  const nameRegex = /^[a-zA-Z\s]*$/;
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -25,10 +27,20 @@ function SignUp() {
       alert("Please enter a valid email address");
       return;
     }
+    if (!nameRegex.test(name)) {
+      alert("Name should contain only letters and spaces");
+      return;
+    }
+    if (!phoneRegex.test(phone)) {
+      alert("Please enter a valid UK phone number (11 digits)");
+      return;
+    }
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
+
+    const formattedPhone = "+44" + phone; 
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -39,7 +51,7 @@ function SignUp() {
         name,
         email,
         school,
-        phone,
+        phone: formattedPhone,  // Store the formatted phone number in the database
         role,
       });
 
@@ -69,7 +81,7 @@ function SignUp() {
               <input type="password" className="signup-input" placeholder="Confirm Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
             </div>
             <div className="field-group">
-              <input type="tel" className="signup-input" placeholder="Phone Number" value={phone} onChange={e => setPhone(e.target.value)} required />
+              <input type="tel" className="signup-input" placeholder="Phone Number (10 digits)" value={phone} onChange={e => setPhone(e.target.value)} required />
             </div>
             <div className="field-group">
               <select className="signup-input" value={school} onChange={e => setSchool(e.target.value)} required>

@@ -69,9 +69,10 @@ body{
   
   /* Button container adjustments */
   .buttons-container {
+    display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-bottom: 5px;
+    height: auto;
   }
   
