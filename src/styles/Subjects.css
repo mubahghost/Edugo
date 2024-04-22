@@ -1,32 +1,55 @@
+.page-container {
+  margin: auto;
+  max-width: 1400px;
+  background-color: #ae42e9; /* Choose your desired color */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.subjects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.subject-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .subject-card {
-  flex: 1; /* Allow cards to grow and fill the space */
-  display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: space-between; /* Distribute space around items */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  padding: 0px; /* Add padding around the card */
-  text-align: center; /* Center the text */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add a subtle shadow */
-  transition: color 0.3s ease; /* Smooth transition for color change */
-  width: 250px; /* Specify width */
-  height: 300px; /* Specify height */
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .subject-card:hover {
-  color: #000; /* Change text color on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 @media (max-width: 768px) {
   .subjects-container {
-    flex-direction: column; /* Stack items vertically on small screens */
+    justify-content: center;
   }
   .subject-card {
-    width: 100%; /* Full width cards on small screens */
-    height: auto; /* Auto height for fluidity on small screens */
-    max-width: none; /* Remove any max-width */
+    width: 80%; /* Full width on smaller screens */
+    margin-bottom: 20px;
   }
 }
 
-.modal-body, .modal-body * {
-  color: black !important; /* Ensures all text is black, overrides other styles */
+/* Optional: If you want exactly the same styling as .card-custom */
+.subject-card {
+  min-height: 450px;
+  max-width: 300px;
+  margin: 25px;
+  /* Rest of the styles */
+}
+
+/* Optional: If you want to use the .card-custom-img styles */
+.subject-card img {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
 }

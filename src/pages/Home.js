@@ -1,11 +1,9 @@
-// Import Bootstrap CSS and other necessary libraries and styles
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Container, Row, Col, Button, Carousel, Modal, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import "../styles/Home.css"; // Ensure the path to your CSS file is correct
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../styles/Home.css";
 
-// Images, make sure the path is correct based on where you've stored your images
 import studyImage from '../assets/study.png';
 import graduationImage from '../assets/graduation.png';
 import successImage from '../assets/success.png';
@@ -13,27 +11,25 @@ import mathImage from '../assets/Maths.jpg';
 import englishImage from '../assets/Eng.jpg';
 import scienceImage from '../assets/Sci.jpg';
 
-// HomePage Component
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Function to handle the modal display
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
-  // Function to handle the action on Learn More button click
   const handleLearnMore = () => {
     if (!isLoggedIn) {
-      setShowModal(true);
+      alert("Login or register to view more.");  // This will display an alert if the user is not logged in
+      setShowModal(false);  // Optionally close the modal if it's open
     } else {
-      window.location.href = "/SignUp";
+      // If logged in, direct the user to another page or perform another action
+      window.location.href = "/Courses";
     }
   };
 
   return (
     <>
-      {/* Your main page content */}
       <Container className="my-5 container-top-adjust">
         <Row className="align-items-center">
           <Col lg={5} className="order-lg-last">
@@ -59,7 +55,6 @@ const HomePage = () => {
         </Row>
       </Container>
 
-      {/* Modal for exploring courses */}
       <Modal show={showModal} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Explore Courses</Modal.Title>

@@ -9,31 +9,96 @@ const Quiz = () => {
   const navigate = useNavigate();
   const [questions] = useState([
     {
-      questionText: 'What is the capital of France?',
+      questionText: 'What is 5+3?',
       answerOptions: [
-        { answerText: 'New York', isCorrect: false },
-        { answerText: 'London', isCorrect: false },
-        { answerText: 'Paris', isCorrect: true },
-        { answerText: 'Berlin', isCorrect: false },
-      ],
-    },{
-      questionText: 'What is the capital of France?',
-      answerOptions: [
-        { answerText: 'New York', isCorrect: false },
-        { answerText: 'London', isCorrect: false },
-        { answerText: 'Paris', isCorrect: true },
-        { answerText: 'Berlin', isCorrect: false },
-      ],
-    },{
-      questionText: 'What is the capital of France?',
-      answerOptions: [
-        { answerText: 'New York', isCorrect: false },
-        { answerText: 'London', isCorrect: false },
-        { answerText: 'Paris', isCorrect: true },
-        { answerText: 'Berlin', isCorrect: false },
+        { answerText: '8', isCorrect: true },
+        { answerText: '9', isCorrect: false },
+        { answerText: '7', isCorrect: false },
+        { answerText: '6', isCorrect: false },
       ],
     },
-    // Add more questions as needed
+    {
+      questionText: 'What is 10-6?',
+      answerOptions: [
+        { answerText: '4', isCorrect: true },
+        { answerText: '5', isCorrect: false },
+        { answerText: '3', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'What is 2x4?',
+      answerOptions: [
+        { answerText: '8', isCorrect: true },
+        { answerText: '6', isCorrect: false },
+        { answerText: '10', isCorrect: false },
+        { answerText: '9', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'What is 12 divided by 3?',
+      answerOptions: [
+        { answerText: '4', isCorrect: true },
+        { answerText: '5', isCorrect: false },
+        { answerText: '3', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'What is the sum of 7 and 2?',
+      answerOptions: [
+        { answerText: '9', isCorrect: true },
+        { answerText: '8', isCorrect: false },
+        { answerText: '10', isCorrect: false },
+        { answerText: '11', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'What is half of 10?',
+      answerOptions: [
+        { answerText: '5', isCorrect: true },
+        { answerText: '6', isCorrect: false },
+        { answerText: '4', isCorrect: false },
+        { answerText: '7', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'What is 20-4?',
+      answerOptions: [
+        { answerText: '16', isCorrect: true },
+        { answerText: '15', isCorrect: false },
+        { answerText: '18', isCorrect: false },
+        { answerText: '14', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'What is 3x3?',
+      answerOptions: [
+        { answerText: '9', isCorrect: true },
+        { answerText: '6', isCorrect: false },
+        { answerText: '12', isCorrect: false },
+        { answerText: '7', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'What is 15 divided by 5?',
+      answerOptions: [
+        { answerText: '3', isCorrect: true },
+        { answerText: '4', isCorrect: false },
+        { answerText: '2', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'What is 6+4?',
+      answerOptions: [
+        { answerText: '10', isCorrect: true },
+        { answerText: '9', isCorrect: false },
+        { answerText: '11', isCorrect: false },
+        { answerText: '8', isCorrect: false },
+      ],
+    }
+    
   ]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
@@ -44,27 +109,24 @@ const Quiz = () => {
       const newAnswers = [...answers];
       newAnswers[currentQuestion] = index;
       setAnswers(newAnswers);
-  
+
       if (questions[currentQuestion].answerOptions[index].isCorrect) {
-        setScore(prevScore => prevScore + 1); // Increment score by 1
+        setScore(prevScore => prevScore + 1); 
       }
-  
+
       const nextQuestion = currentQuestion + 1;
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
-        // Since this is the last question, show the score and submit the results.
         setShowScore(true);
-        // Call the submit function directly here.
-        await handleSubmitQuiz(score + 1); // Pass the updated score to handleSubmitQuiz
+        await handleSubmitQuiz(score + 1); 
       }
     }
   };
-  
+
   useEffect(() => {
-    // Call the submit function when showScore changes
     if (showScore) {
-      handleSubmitQuiz(score + 1); // Pass the updated score to handleSubmitQuiz
+      handleSubmitQuiz(score + 1); 
     }
   }, [showScore]);
 
@@ -72,7 +134,7 @@ const Quiz = () => {
     if (auth.currentUser) {
       const quizResultData = {
         userEmail: auth.currentUser.email,
-        score: quizScore-1,
+        score: quizScore - 1,
         totalQuestions: questions.length,
         timestamp: new Date(),
       };
@@ -105,7 +167,7 @@ const Quiz = () => {
       <Row className="justify-content-md-center">
         <Col md={12}>
           <Card>
-            <Card.Header as="h5">JavaScript Quiz</Card.Header>
+            <Card.Header as="h5">Maths QUIZ</Card.Header>
             {showScore ? (
               <Card.Body>
                 <Card.Title>Quiz Completed! Your score: {score} out of {questions.length}</Card.Title>
