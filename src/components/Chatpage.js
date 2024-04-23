@@ -71,7 +71,7 @@ const ChatPage = () => {
         <div className="navigation-buttons">
           <Link to="/contents" className="nav-button">View Contents</Link>
           <Link to="/subjects" className="nav-button">Subjects Page</Link>
-          <Link to="/profile" className="nav-button">Profile Page</Link>
+          <Link to="/ProfilePage" className="nav-button">Profile Page</Link>
         </div>
       </div>
       <div className="chat-container">
