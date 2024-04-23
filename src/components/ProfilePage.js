@@ -94,7 +94,7 @@ const ProfilePage = () => {
 
   return (
     <div className="container emp-profile">
-      <div className="profile-img-container">
+      <div className="profile-img-container " style={{marginRight:"5%"}}>
         <img src={profileImageUrl} alt="Profile" className="profile-img"/>
         {editing && (
           <>

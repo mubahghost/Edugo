@@ -104,6 +104,7 @@ const Quiz = () => {
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  
   const handleAnswerClick = async (index) => {
     if (answers[currentQuestion] === null) {
       const newAnswers = [...answers];

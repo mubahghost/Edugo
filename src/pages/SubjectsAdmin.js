@@ -19,7 +19,7 @@ const SubjectsAdmin = () => {
       const subjectsCollectionRef = collection(db, 'subjects');
       const subjectsSnapshot = await getDocs(subjectsCollectionRef);
       const subjectsList = subjectsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      console.log("Fetched subjects:", subjectsList); // Log to check fetched data
+      console.log("Fetched subjects:", subjectsList);
       setSubjects(subjectsList);
     };
 
@@ -60,7 +60,7 @@ const SubjectsAdmin = () => {
   };
 
   const handleRemoveSubject = async (subjectId) => {
-    console.log("Deleting subject with ID:", subjectId); // Check the ID here
+    console.log("Deleting subject with ID:", subjectId); 
     if (!subjectId) {
       console.error("Subject ID is undefined.");
       return;

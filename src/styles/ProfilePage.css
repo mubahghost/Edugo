@@ -244,6 +244,9 @@ textarea:hover {
 }
 /* Add styles for the new upload image button */
 .profile-img {
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
   position: relative;
   width: 300px; /* Smaller width */
   height: 300px; /* Smaller height to match width for a circle */
