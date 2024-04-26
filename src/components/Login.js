@@ -52,6 +52,7 @@ function Login() {
                             <div className="login__field">
                                 <input type="password" className="login__input" ref={passwordRef} placeholder="Password" />
                             </div>
+                            
                             <div className="buttons-container">
                                 <Button type="submit" variant="primary" className="login__submit">
                                     Log In Now
@@ -68,7 +69,6 @@ function Login() {
                                 </Link>
                             </div>
                             </form>
-
                     </div>
                     <div className="login-image-container">
                         <img src={loginImage} alt="Login" className="login-image" />
