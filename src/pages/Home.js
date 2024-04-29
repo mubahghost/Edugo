@@ -30,7 +30,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Container className="my-5 container-top-adjust">
+      <Container>
         <Row className="align-items-center">
           <Col lg={5} className="order-lg-last">
             <Carousel>
@@ -48,7 +48,7 @@ const HomePage = () => {
           <Col lg={7} className="text-lg-right">
             <h2>Welcome to EDUGO</h2>
             <p>Your journey to excellence in education begins here. Explore our courses and find the right path for your academic and personal growth.</p>
-            <Button variant="primary" onClick={handleShow} className="mr-3">Explore Courses</Button>
+            <Button variant="primary" onClick={handleShow} >Explore Courses</Button>
             <Link to="/Login"><Button variant="primary">Login/Signup</Button></Link>
             <Link to="/GettingStarted"><Button variant="primary">Getting Started</Button></Link>
           </Col>
@@ -60,8 +60,8 @@ const HomePage = () => {
           <Modal.Title>Explore Courses</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Row className="gx-0 gy-4">
-            <Col md={4} className="d-flex justify-content-center">
+          <Row >
+            <Col md={4}>
               <Card className="w-100">
                 <Card.Img variant="top" src={mathImage} className="card-img-top" />
                 <Card.Body>
@@ -71,7 +71,7 @@ const HomePage = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} className="d-flex justify-content-center">
+            <Col md={4} >
               <Card className="w-100">
                 <Card.Img variant="top" src={englishImage} className="card-img-top" />
                 <Card.Body>
@@ -81,7 +81,7 @@ const HomePage = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} className="d-flex justify-content-center">
+            <Col md={4} >
               <Card className="w-100">
                 <Card.Img variant="top" src={scienceImage} className="card-img-top" />
                 <Card.Body>

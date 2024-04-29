@@ -22,7 +22,9 @@ function Login() {
             await signInWithEmailAndPassword(auth, email, password);
             navigate('/profile'); 
         } catch (error) {
-            setError("Login failed: " + error.message); 
+            const errorMessage = "";
+            setError(errorMessage); 
+            alert("Check that you have added the correct details and try again.");
         }
     };
 
