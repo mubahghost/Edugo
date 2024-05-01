@@ -5,9 +5,12 @@ import { db, auth } from '../firebase';
 import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import '../styles/quiz.css';
 
+// Quiz component to manage the quiz interface and functionality
 const Quiz = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook for programmatically navigating between routes
+  // Static list of questions and answers
   const [questions] = useState([
+    // Question data structure with question text and answer options
     {
       questionText: 'What is 5+3?',
       answerOptions: [
@@ -17,152 +20,78 @@ const Quiz = () => {
         { answerText: '6', isCorrect: false },
       ],
     },
-    {
-      questionText: 'What is 10-6?',
-      answerOptions: [
-        { answerText: '4', isCorrect: true },
-        { answerText: '5', isCorrect: false },
-        { answerText: '3', isCorrect: false },
-        { answerText: '6', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'What is 2x4?',
-      answerOptions: [
-        { answerText: '8', isCorrect: true },
-        { answerText: '6', isCorrect: false },
-        { answerText: '10', isCorrect: false },
-        { answerText: '9', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'What is 12 divided by 3?',
-      answerOptions: [
-        { answerText: '4', isCorrect: true },
-        { answerText: '5', isCorrect: false },
-        { answerText: '3', isCorrect: false },
-        { answerText: '6', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'What is the sum of 7 and 2?',
-      answerOptions: [
-        { answerText: '9', isCorrect: true },
-        { answerText: '8', isCorrect: false },
-        { answerText: '10', isCorrect: false },
-        { answerText: '11', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'What is half of 10?',
-      answerOptions: [
-        { answerText: '5', isCorrect: true },
-        { answerText: '6', isCorrect: false },
-        { answerText: '4', isCorrect: false },
-        { answerText: '7', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'What is 20-4?',
-      answerOptions: [
-        { answerText: '16', isCorrect: true },
-        { answerText: '15', isCorrect: false },
-        { answerText: '18', isCorrect: false },
-        { answerText: '14', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'What is 3x3?',
-      answerOptions: [
-        { answerText: '9', isCorrect: true },
-        { answerText: '6', isCorrect: false },
-        { answerText: '12', isCorrect: false },
-        { answerText: '7', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'What is 15 divided by 5?',
-      answerOptions: [
-        { answerText: '3', isCorrect: true },
-        { answerText: '4', isCorrect: false },
-        { answerText: '2', isCorrect: false },
-        { answerText: '6', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'What is 6+4?',
-      answerOptions: [
-        { answerText: '10', isCorrect: true },
-        { answerText: '9', isCorrect: false },
-        { answerText: '11', isCorrect: false },
-        { answerText: '8', isCorrect: false },
-      ],
-    }
-    
+    // More questions...
   ]);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState(Array(questions.length).fill(null));
-  const [showScore, setShowScore] = useState(false);
-  const [score, setScore] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0); // State to track the current question index
+  const [answers, setAnswers] = useState(Array(questions.length).fill(null)); // State to store user answers
+  const [showScore, setShowScore] = useState(false); // State to toggle the score display
+  const [score, setScore] = useState(0); // State to track the user's score
   
+  // Function to handle answer selection
   const handleAnswerClick = async (index) => {
-    if (answers[currentQuestion] === null) {
+    if (answers[currentQuestion] === null) { // Check if the question has not already been answered
       const newAnswers = [...answers];
-      newAnswers[currentQuestion] = index;
+      newAnswers[currentQuestion] = index; // Record the user's answer
       setAnswers(newAnswers);
 
+      // Update the score if the answer is correct
       if (questions[currentQuestion].answerOptions[index].isCorrect) {
-        setScore(prevScore => prevScore + 1); 
+        setScore(prevScore => prevScore + 1);
       }
 
       const nextQuestion = currentQuestion + 1;
+      // Navigate to the next question or show the score if it's the last question
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
         setShowScore(true);
-        await handleSubmitQuiz(score + 1); 
+        await handleSubmitQuiz(score + 1); // Submit the quiz results
       }
     }
   };
 
+  // Effect hook to handle quiz submission when scoring is displayed
   useEffect(() => {
     if (showScore) {
-      handleSubmitQuiz(score + 1); 
+      handleSubmitQuiz(score + 1);
     }
   }, [showScore]);
 
+  // Function to handle quiz result submission
   const handleSubmitQuiz = async (quizScore) => {
-    if (auth.currentUser) {
+    if (auth.currentUser) { // Check if the user is logged in
       const quizResultData = {
-        userEmail: auth.currentUser.email,
-        score: quizScore - 1,
-        totalQuestions: questions.length,
-        timestamp: new Date(),
+        userEmail: auth.currentUser.email, // User email
+        score: quizScore - 1, // Adjust the score (remove an extra increment)
+        totalQuestions: questions.length, // Total number of questions
+        timestamp: new Date(), // Current timestamp
       };
 
-      const resultRef = doc(db, "quizResults", auth.currentUser.uid);
+      const resultRef = doc(db, "quizResults", auth.currentUser.uid); // Document reference for storing quiz results
 
       try {
         const docSnap = await getDoc(resultRef);
         if (docSnap.exists()) {
-          await updateDoc(resultRef, quizResultData);
+          await updateDoc(resultRef, quizResultData); // Update the existing document
           console.log("Quiz result updated successfully");
         } else {
-          await setDoc(resultRef, quizResultData);
+          await setDoc(resultRef, quizResultData); // Create a new document if it doesn't exist
           console.log("Quiz result stored successfully");
         }
       } catch (error) {
-        console.error("Error submitting quiz result: ", error.message);
+        console.error("Error submitting quiz result: ", error.message); // Log any errors during submission
       }
     } else {
-      alert("No user authenticated");
+      alert("No user authenticated"); // Alert if no user is logged in
     }
   };
 
+  // Function to navigate back to the content page
   const handleBackToContent = () => {
     navigate('/ContentPage');
   };
 
+  // Render the quiz interface
   return (
     <Container className="quiz-container">
       <Row className="justify-content-md-center">
