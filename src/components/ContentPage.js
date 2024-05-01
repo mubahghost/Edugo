@@ -35,7 +35,6 @@ const ContentPage = () => {
   return (
     <div className="content-container">
       <div className="button-container">
-        // Navigation buttons to various parts of the app using react-router-dom Links
         <Link to="/Quiz" className="content-link">
           <Button className="QuizBtn">Take Quiz</Button>
         </Link>
@@ -47,7 +46,6 @@ const ContentPage = () => {
         </Link>
       </div>
       <div className="file-preview">
-        // Conditional rendering based on the file type to display appropriate preview elements
         {fileType.startsWith('image/') && (
           <img src={fileURL} alt={`Preview of ${fileName}`} className="preview-image" />
         )}

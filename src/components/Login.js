@@ -71,8 +71,8 @@ function Login() {
                                 <Button onClick={handleForgotPassword} variant="primary" className="login__submit">
                                     Forgot Password?
                                 </Button>
-                                {error && <div className="error-message">{error}</div>} // Conditionally displays an error message
-                                {message && <div className="success-message">{message}</div>} // Conditionally displays a success message
+                                {error && <div className="error-message">{error}</div>} 
+                                {message && <div className="success-message">{message}</div>}
                                 <Link to="/signup">
                                     <Button variant="primary" className="login__submit">
                                         SignUp
@@ -82,7 +82,7 @@ function Login() {
                             </form>
                     </div>
                     <div className="login-image-container">
-                        <img src={loginImage} alt="Login" className="login-image" /> // Displays a static login image
+                        <img src={loginImage} alt="Login" className="login-image" /> 
                     </div>
                 </div>
             </div>
