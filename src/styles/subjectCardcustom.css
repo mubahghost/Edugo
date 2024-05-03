@@ -1,20 +1,19 @@
 .card-custom {
-  overflow: hidden; /* Hide overflow to manage child elements like images and after-effects */
-  min-height: 450px; /* Minimum height of the card */
-  max-width: 300px; /* Maximum width of the card */
-  box-shadow: 0 0 15px rgba(10, 10, 10, 0.3); /* Shadow for 3D effect */
-  position: relative; /* Relative position for absolute positioning of children */
-  margin: 25px; /* Margin to create space between cards */
+  overflow: hidden;
+  min-height: 450px;
+  max-width: 300px;
+  box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+  position: relative;
+  margin: 25px;
 }
 
 .card-custom-img {
-  height: 200px; /* Fixed height for the image section */
-  background-repeat: no-repeat; /* No repeat of the background image */
-  background-size: cover; /* Cover the entire div with the background */
-  background-position: center; /* Center the background image */
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-/* After pseudo-element to create a diagonal slice effect */
 .card-custom-img::after {
   position: absolute;
   content: '';
@@ -27,19 +26,19 @@
   border-right-width: 0;
   border-bottom-width: 0;
   border-left-width: 545px;
-  border-left-width: calc(575px - 5vw); /* Responsive width using viewport width */
+  border-left-width: calc(575px - 5vw);
   border-top-color: transparent;
   border-right-color: transparent;
   border-bottom-color: transparent;
-  border-left-color: inherit; /* Inherits the border color from the parent */
+  border-left-color: inherit;
 }
 
 .card-custom-avatar img {
-  border-radius: 50%; /* Circular image for avatar */
-  box-shadow: 0 0 15px rgba(10, 10, 10, 0.3); /* Shadow for the avatar for depth */
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
   position: absolute;
-  top: 100px; /* Position from the top inside the card */
-  left: 1.25rem; /* Position from the left inside the card */
-  width: 100px; /* Width of the avatar */
-  height: 100px; /* Height of the avatar */
+  top: 100px;
+  left: 1.25rem;
+  width: 100px;
+  height: 100px;
 }

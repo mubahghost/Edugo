@@ -2,23 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom'; // Make sure to import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { storage, db, auth } from '../firebase';
 import "../styles/SubjectCard.css";
 
 const ContentPageAdmin = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [file, setFile] = useState(null);
-  const [fileURL, setFileURL] = useState('');
-  const [fileName, setFileName] = useState('');
-  const [user, setUser] = useState(null);
-  const [fileType, setFileType] = useState('');
-  const navigate = useNavigate(); // Hook for navigation
+  const [showModal, setShowModal] = useState(false); // State to control visibility of modal
+  const [file, setFile] = useState(null); // State to store the currently selected file
+  const [fileURL, setFileURL] = useState(''); // State to store URL for file preview
+  const [fileName, setFileName] = useState(''); // State to store name of the file
+  const [fileType, setFileType] = useState(''); // State to store type of the file
+  const [user, setUser] = useState(null); // State to store authenticated user details
+  const navigate = useNavigate(); // Hook for programmatically navigating
 
+  // Hook to manage authentication state and fetch latest file from Firestore
   useEffect(() => {
-    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
-      setUser(user || null);
-    });
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => setUser(user || null)); // Listen for auth changes
 
     const filesRef = collection(db, "files");
     const q = query(filesRef, orderBy("timestamp", "desc"), limit(1));
@@ -33,30 +32,30 @@ const ContentPageAdmin = () => {
     });
 
     return () => {
-      unsubscribeAuth();
-      unsubscribeFiles();
+      unsubscribeAuth(); // Cleanup auth listener on unmount
+      unsubscribeFiles(); // Cleanup files listener on unmount
     };
   }, []);
 
-  const handleEditContent = () => setShowModal(true);
-  const handleCloseModal = () => {
+  const handleEditContent = () => setShowModal(true); // Handler to open modal
+  const handleCloseModal = () => { // Handler to close modal and clear file state
     setShowModal(false);
     setFile(null);
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e) => { // Handler for file input change
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
       setFileName(selectedFile.name);
       setFileType(selectedFile.type);
       const reader = new FileReader();
-      reader.onloadend = () => setFileURL(reader.result);
+      reader.onloadend = () => setFileURL(reader.result); // Set URL for preview
       reader.readAsDataURL(selectedFile);
     }
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async () => { // Handler for uploading file to Firebase storage and database
     if (!user) {
       alert("You must be logged in to upload files.");
       return;
@@ -84,9 +83,7 @@ const ContentPageAdmin = () => {
     }
   };
 
-  const goToChatPage = () => {
-    navigate('/ChatPage');
-  };
+  const goToChatPage = () => navigate('/ChatPage'); // Navigation handler to ChatPage
 
   return (
     <div className="content-container">
@@ -108,6 +105,7 @@ const ContentPageAdmin = () => {
           <video controls width="100%">
             <source src={fileURL} type={fileType} />
             Your browser does not support the video tag.
+
           </video>
         )}
         {!(fileType.startsWith('image/') || fileType === 'application/pdf' || fileType.startsWith('video/')) && (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import { db, storage } from '../firebase';
 import { collection, getDocs, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -14,9 +14,10 @@ const SubjectsAdmin = () => {
   const [newSubjectSummary, setNewSubjectSummary] = useState('');
   const [newSubjectImage, setNewSubjectImage] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
 
   useEffect(() => {
+    // Fetch subjects from Firestore database on component mount
     const fetchSubjects = async () => {
       const subjectsCollectionRef = collection(db, 'subjects');
       const subjectsSnapshot = await getDocs(subjectsCollectionRef);
@@ -27,10 +28,12 @@ const SubjectsAdmin = () => {
     fetchSubjects();
   }, []);
 
+  // Handle image selection for the new subject
   const handleImageChange = (e) => {
     setNewSubjectImage(e.target.files[0]);
   };
 
+  // Upload the selected image to Firebase Storage
   const uploadImage = async () => {
     if (!newSubjectImage) return '';
     const fileRef = ref(storage, `subject-icons/${newSubjectImage.name}`);
@@ -39,6 +42,7 @@ const SubjectsAdmin = () => {
     return imageUrl;
   };
 
+  // Handle addition of a new subject
   const handleAddSubject = async () => {
     setUploading(true);
     const iconUrl = await uploadImage();
@@ -60,6 +64,7 @@ const SubjectsAdmin = () => {
     }
   };
 
+  // Handle removal of a subject
   const handleRemoveSubject = async (subjectId) => {
     if (!subjectId) {
       console.error("Subject ID is undefined.");
@@ -73,6 +78,7 @@ const SubjectsAdmin = () => {
     }
   };
 
+  // Reset the form fields
   const resetForm = () => {
     setNewSubjectTitle('');
     setNewSubjectSummary('');

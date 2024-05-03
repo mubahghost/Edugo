@@ -1,12 +1,11 @@
 Container for the dropdown button
 .dropdown {
-    position: fixed; /* Fixed position to stay on the left */
+    position: fixed; 
     top: 0;
     left: 0;
-    z-index: 1; /* Make sure it stays on top */
+    z-index: 1; 
   }
   
-  /* The dropdown button */
   .dropbtn {
     background-color: #b135e6;
     color: white;
@@ -18,7 +17,6 @@ Container for the dropdown button
     cursor: pointer;
   }
   
-  /* Dropdown content (hidden by default) */
   .dropdown-content {
     display: none;
     position: absolute;
@@ -28,12 +26,10 @@ Container for the dropdown button
     z-index: 2;
   }
   
-  /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
     display: block;
   }
   
-  /* Links inside the dropdown */
   .dropdown-content a {
     color: black;
     padding: 12px 16px;
@@ -41,10 +37,8 @@ Container for the dropdown button
     display: block;
   }
   
-  /* Change color of dropdown links on hover */
   .dropdown-content a:hover {background-color: #f1f1f1}
   
-  /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {
     background-color: #83c4e4;
   }

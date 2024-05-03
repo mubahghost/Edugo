@@ -6,9 +6,7 @@ import { auth, firestore } from "../firebase";
 import signUpImage from '../assets/signup.png';
 import "../styles/SignUp.css";
 
-// SignUp component for handling new user registrations
 function SignUp() {
-  // State hooks to manage form inputs
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,18 +15,15 @@ function SignUp() {
   const [school, setSchool] = useState("");
   const [role, setRole] = useState("");
   const [schools] = useState(["School A", "School B", "Institute A", "Institute B"]);
-  const navigate = useNavigate(); // Hook to navigate programmatically
+  const navigate = useNavigate();
 
-  // Regular expressions for validating email, phone, and name inputs
   const emailRegex = /^\S+@\S+\.\S+$/;
   const phoneRegex = /^\d{11}$/;
   const nameRegex = /^[a-zA-Z\s]*$/;
 
-  // Function to handle the sign-up form submission
   const handleSignUp = async (e) => {
-    e.preventDefault(); // Prevent the form from submitting normally
+    e.preventDefault();
 
-    // Input validation
     if (!emailRegex.test(email)) {
       alert("Please enter a valid email address");
       return;
@@ -46,17 +41,13 @@ function SignUp() {
       return;
     }
 
-    // Prepend the country code for UK phone numbers
     const formattedPhone = "+44" + phone;
 
     try {
-      // Create a new user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Update the user's profile with their name
       await updateProfile(user, { displayName: name });
-      // Create a new document for the user in Firestore with additional details
       await setDoc(doc(firestore, "users", user.uid), {
         name,
         email,
@@ -65,22 +56,19 @@ function SignUp() {
         role,
       });
 
-      // Send an email verification to the new user
       await sendEmailVerification(user);
       alert("Registered successfully! Please check your email to verify your account.");
-      navigate('/profile'); // Navigate to the profile page after successful registration
+      navigate('/profile');
     } catch (error) {
       alert("Error during registration: " + error.message);
     }
   };
 
-  // Render the sign-up form
   return (
     <div className="signup-container">
       <div className="signup-screen">
         <div className="signup-content">
           <form onSubmit={handleSignUp}>
-            {/* Input fields for user details */}
             <div className="field-group">
               <input type="text" className="signup-input" placeholder="Full Name" value={name} onChange={e => setName(e.target.value)} required />
             </div>
@@ -97,7 +85,6 @@ function SignUp() {
               <input type="tel" className="signup-input" placeholder="Phone Number (10 digits)" value={phone} onChange={e => setPhone(e.target.value)} required />
             </div>
             <div className="field-group">
-              {/* Select input for choosing a school */}
               <select className="signup-input" value={school} onChange={e => setSchool(e.target.value)} required>
                 <option value="" disabled>Select School</option>
                 {schools.map((schoolOption, index) => (
@@ -106,7 +93,6 @@ function SignUp() {
               </select>
             </div>
             <div className="field-group">
-              {/* Select input for choosing a role */}
               <select className="signup-input" value={role} onChange={e => setRole(e.target.value)} required>
                 <option value="" disabled>Select Role</option>
                 <option value="student">Student</option>

@@ -1,4 +1,3 @@
-/* SignUp.css */
 .signup-container {
     display: flex;
     flex-direction: column;
@@ -14,50 +13,50 @@
     align-items: center;
     background: linear-gradient(90deg, #9b1fa7, #7C78B8);
     width: 90%;
-    max-width: 1250px; /* Increased the max-width */
+    max-width: 1250px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 30px; /* Added more padding */
+    padding: 30px; 
     border-radius: 10px;
-    margin: auto; /* Centers the screen */
+    margin: auto; 
   }
   
   .signup-content {
-    width: 100%; /* Ensures that the content takes the full width of the parent */
+    width: 100%; 
   }
   
   .signup-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px; /* Adds space between the form and image */
+    margin-top: 20px; 
   }
   
   .signup-image {
-    max-width: 100%; /* Makes the image responsive */
-    max-height: 300px; /* Limits the image height */
-    border-radius: 8px; /* Adds rounded corners to the image */
+    max-width: 100%; 
+    max-height: 300px;
+    border-radius: 8px;
   }
   
   .signup-input {
-    width: 160px; /* Full width minus padding */
+    width: 160px; 
     padding: 10px;
     font-size: 16px;
     border-radius: 10px;
     border: 1px solid #ccc;
     background: #fafafa;
     color: #333;
-    margin-bottom: 20px; /* Adds space between input fields */
+    margin-bottom: 20px;
   }
   
   .field-group {
-    width: 100%; /* Full width to stack vertically */
+    width: 100%; 
   }
   
   .buttons-right {
     width: 100%; 
     padding:20px;
     display: flex;
-    justify-content: center; /* Centers the button */
+    justify-content: center;
   }
   
   .signup-button {
@@ -67,8 +66,8 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    position: absolute; /* Position the button over the image */
-    top: 100px; /* Adjust as needed to position above the image */
+    position: absolute; 
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
   }

@@ -6,48 +6,42 @@ import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/aut
 import { auth } from "../firebase";
 import loginImage from '../assets/login.png'; 
 
-// Login component for handling user authentication
 function Login() {
-    // References to DOM elements for email and password input fields
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
-    // Hook to programmatically navigate to other routes
     const navigate = useNavigate();
-    // State for storing error and success messages
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
 
-    // Function to handle user login using Firebase authentication
+    // Handle user login
     const handleLogin = async (e) => {
-        e.preventDefault(); // Prevents the form from submitting traditionally
-        const email = emailRef.current.value; // Retrieves email from the input field
-        const password = passwordRef.current.value; // Retrieves password from the input field
-
+        e.preventDefault();
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
         try {
-            await signInWithEmailAndPassword(auth, email, password); // Firebase sign-in function
-            navigate('/profile'); // Navigate to profile page on successful login
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate('/profile');
         } catch (error) {
-            setError("Login failed: " + error.message); // Set error message on login failure
+            setError("Login failed: " + error.message);
             alert("Check that you have entered the correct details and try again.");
         }
     };
 
-    // Function to handle sending a password reset email
+    // Send password reset email
     const handleForgotPassword = async () => {
-        const email = emailRef.current.value; // Retrieves email from the input field
+        const email = emailRef.current.value;
         if (!email) {
             alert("Please enter your email address to reset your password.");
             return;
         }
         try {
-            await sendPasswordResetEmail(auth, email); // Firebase function to send password reset email
-            setMessage("Password reset email sent. Please check your email inbox."); // Set success message on successful operation
+            await sendPasswordResetEmail(auth, email);
+            setMessage("Password reset email sent. Please check your email inbox.");
         } catch (error) {
-            setError("Failed to send password reset email: " + error.message); // Set error message on failure
+            setError("Failed to send password reset email: " + error.message);
         }
     };
 
-    // Rendering part of the component
     return (
         <>  
             <div className="container">
@@ -68,7 +62,6 @@ function Login() {
                                 <Button onClick={handleForgotPassword} variant="primary" className="login__submit">
                                     Forgot Password?
                                 </Button>
-                                {error && <div className="error-message">{error}</div>}
                                 {message && <div className="success-message">{message}</div>}
                                 <Link to="/signup">
                                     <Button variant="primary" className="login__submit">
@@ -87,4 +80,4 @@ function Login() {
     );
 }
 
-export default Login; // Exports the Login component for use in other parts of the application
+export default Login;

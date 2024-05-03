@@ -89,7 +89,6 @@
     margin-right: auto;
   }
   
-  /* Centering the h1 tag horizontally and styling */
   h1 {
     text-align: center;
     color: white;
@@ -103,9 +102,9 @@
   
   .header-container {
     position: relative;
-    background-color: #534be6; /* Assuming your header bar has this color */
-    padding: 10px 0; /* Padding for visual spacing */
-  }
+    background-color: #534be6;
+    padding: 10px 0; 
+    }
   
   .navigation-buttons {
     position: absolute;

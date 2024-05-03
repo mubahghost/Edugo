@@ -50,7 +50,6 @@ const HomePage = () => {
             <p>Your journey to excellence in education begins here. Explore our courses and find the right path for your academic and personal growth.</p>
             <Button variant="primary" onClick={handleShow} >Explore Courses</Button>
             <Link to="/Login"><Button variant="primary">Login/Signup</Button></Link>
-            <Link to="/GettingStarted"><Button variant="primary">Getting Started</Button></Link>
           </Col>
         </Row>
       </Container>

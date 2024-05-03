@@ -1,6 +1,6 @@
 .contact-page {
   background: linear-gradient(90deg, #9f2bcd, #b269c7);
-  padding: 50px 0; /* Top and bottom padding */
+  padding: 50px 0; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,13 +9,13 @@
 
 .contact-title {
   font-size: 2.5rem;
-  color: white; /* Text color changed to white */
+  color: white; 
   margin-bottom: 30px;
   margin-left: 600px;
 }
 
 .contact-form-container {
-  background: white; /* Container background changed to white */
+  background: white; 
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -39,22 +39,22 @@
   border: 1px solid #ddd;
   font-size: 16px;
   width: 100%;
-  background: white; /* Input fields background changed to white */
-  color: #333; /* Input text color */
+  background: white; 
+  color: #333; 
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #aaa; /* Placeholder text color */
+  color: #aaa;
 }
 
 .contact-form textarea {
-  resize: vertical; /* Allow only vertical resizing */
-  min-height: 150px; /* Minimum height */
+  resize: vertical;
+  min-height: 150px; 
 }
 
 .submit-btn {
-  background-color: #5c6bc0; /* Indigo color */
+  background-color: #5c6bc0; 
   color: white;
   padding: 15px 20px;
   border: none;
@@ -65,7 +65,7 @@
 }
 
 .submit-btn:hover {
-  background-color: #3f51b5; /* Darker indigo on hover */
+  background-color: #3f51b5; 
 }
 
 @media (max-width: 768px) {

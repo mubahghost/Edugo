@@ -5,13 +5,11 @@ import { db, auth } from '../firebase';
 import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import '../styles/quiz.css';
 
-// Quiz component to manage the quiz interface and functionality
+// Manages the quiz interactions, including question navigation, answer selection, and score calculation
 const Quiz = () => {
-  const navigate = useNavigate(); // Hook for programmatically navigating between routes
-  // Static list of questions and answers
+  const navigate = useNavigate(); // Used for redirecting to other pages
   const [questions] = useState([
-    // Question data structure with question text and answer options
-    {
+    { // Static data for quiz questions and answers
       questionText: 'What is 5+3?',
       answerOptions: [
         { answerText: '8', isCorrect: true },
@@ -20,78 +18,74 @@ const Quiz = () => {
         { answerText: '6', isCorrect: false },
       ],
     },
-    // More questions...
   ]);
-  const [currentQuestion, setCurrentQuestion] = useState(0); // State to track the current question index
-  const [answers, setAnswers] = useState(Array(questions.length).fill(null)); // State to store user answers
-  const [showScore, setShowScore] = useState(false); // State to toggle the score display
-  const [score, setScore] = useState(0); // State to track the user's score
-  
-  // Function to handle answer selection
+  const [currentQuestion, setCurrentQuestion] = useState(0); // Tracks the index of the current question
+  const [answers, setAnswers] = useState(Array(questions.length).fill(null)); // Records user's answers
+  const [showScore, setShowScore] = useState(false); // Controls display of the score summary
+  const [score, setScore] = useState(0); // Accumulates user's score
+
+  // Handles logic for selecting an answer, updating the score, and navigating through the quiz
   const handleAnswerClick = async (index) => {
-    if (answers[currentQuestion] === null) { // Check if the question has not already been answered
+    if (answers[currentQuestion] === null) {
       const newAnswers = [...answers];
-      newAnswers[currentQuestion] = index; // Record the user's answer
+      newAnswers[currentQuestion] = index;
       setAnswers(newAnswers);
 
-      // Update the score if the answer is correct
       if (questions[currentQuestion].answerOptions[index].isCorrect) {
         setScore(prevScore => prevScore + 1);
       }
 
+      // Move to the next question or finish the quiz
       const nextQuestion = currentQuestion + 1;
-      // Navigate to the next question or show the score if it's the last question
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
         setShowScore(true);
-        await handleSubmitQuiz(score + 1); // Submit the quiz results
+        await handleSubmitQuiz(score + 1);
       }
     }
   };
 
-  // Effect hook to handle quiz submission when scoring is displayed
+  // Submits the final quiz score to the database when the quiz ends
   useEffect(() => {
     if (showScore) {
-      handleSubmitQuiz(score + 1);
+      handleSubmitQuiz(score + 1); 
     }
   }, [showScore]);
 
-  // Function to handle quiz result submission
+  // Saves quiz results in Firebase Firestore, handling updates for repeat attempts or new submissions
   const handleSubmitQuiz = async (quizScore) => {
-    if (auth.currentUser) { // Check if the user is logged in
+    if (auth.currentUser) {
       const quizResultData = {
-        userEmail: auth.currentUser.email, // User email
-        score: quizScore - 1, // Adjust the score (remove an extra increment)
-        totalQuestions: questions.length, // Total number of questions
-        timestamp: new Date(), // Current timestamp
+        userEmail: auth.currentUser.email,
+        score: quizScore - 1,
+        totalQuestions: questions.length,
+        timestamp: new Date(),
       };
-
-      const resultRef = doc(db, "quizResults", auth.currentUser.uid); // Document reference for storing quiz results
-
+      const resultRef = doc(db, "quizResults", auth.currentUser.uid);
       try {
         const docSnap = await getDoc(resultRef);
         if (docSnap.exists()) {
-          await updateDoc(resultRef, quizResultData); // Update the existing document
+          await updateDoc(resultRef, quizResultData);
           console.log("Quiz result updated successfully");
         } else {
-          await setDoc(resultRef, quizResultData); // Create a new document if it doesn't exist
+          await setDoc(resultRef, quizResultData);
           console.log("Quiz result stored successfully");
         }
       } catch (error) {
-        console.error("Error submitting quiz result: ", error.message); // Log any errors during submission
+        console.error("Error submitting quiz result:", error.message);
       }
     } else {
-      alert("No user authenticated"); // Alert if no user is logged in
+      alert("No user authenticated");
     }
   };
 
-  // Function to navigate back to the content page
+  // Navigates back to the content page upon completion
   const handleBackToContent = () => {
     navigate('/ContentPage');
   };
 
-  // Render the quiz interface
+  // Render the quiz UI, including question navigation and score display
   return (
     <Container className="quiz-container">
       <Row className="justify-content-md-center">
@@ -120,6 +114,7 @@ const Quiz = () => {
                       >
                         {answerOption.answerText}
                       </ListGroup.Item>
+
                     ))}
                   </ListGroup>
                 </Card.Body>

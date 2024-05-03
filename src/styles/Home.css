@@ -1,27 +1,23 @@
-/* Home.css */
 
-/* Sticky Navbar */
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 1020; /* Higher than the carousel but below modal */
+  z-index: 1020; 
 }
 .card-img {
-  width: 100%; /* Make sure image is not wider than the card */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%; 
+  height: auto; 
 }
 
-/* Modal Styling */
 .modal-header {
   background-color: #007bff;
   color: #fff;
 }
 
-/* Additional styles for Cards, Accordion, and Animation on Scroll */
 
 .card-img-top {
   width: 80%;
-  height: 180px; /* Adjust based on your design */
+  height: 180px; 
   object-fit: cover;
 }
 
@@ -32,52 +28,47 @@
 
 
 .carousel-item {
-  height: 500px; /* Fixed height for all carousel items */
+  height: 500px; 
 }
 
 .carousel-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* This will cover the area without stretching the image */
+  object-fit: cover; 
 }
 
 .welcome-message {
-  font-size: px; /* Adjust the size as needed */
-  font-weight: bold; /* Makes the welcome message bold */
+  font-size: 30px; 
+  font-weight: bold; 
 }
 
 .welcome-description {
-  font-size: 30px; /* Adjust the size as needed */
-  margin-bottom: 1rem; /* Provides spacing below the paragraph */
+  font-size: 30px; 
+  margin-bottom: 1rem; 
 }
 body{
   background: linear-gradient(90deg, #b33ca1, #b269c7);
 
 }
 .page-title {
-  color: white; /* Sets the font color to white */
-  font-size: 40px; /* Increases the font size */
+  color: white; 
+  font-size: 40px; 
   font-weight: bold; 
   padding-right: 30px;
 padding-left: 50px}
 
-/* Other styles */
 
-/* Ensure images in the modal cards fit their containers */
 .card-img-top {
-  width: 100%; /* Make sure image is not wider than the card */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%; 
+  height: auto;
 }
 
-/* Adjust modal body padding to ensure consistent spacing */
 .modal-body {
-  padding: 15px; /* You can adjust this value as needed */
+  padding: 15px; 
 }
 
-/* You may also want to adjust the Row's negative margins if using Bootstrap 5 */
 .row {
   margin-right: 0;
   margin-left: 0;
 }
 
-/* Rest of your styles */

@@ -72,7 +72,7 @@ function TeacherDashboard() {
                 <td>
                   {student.quizResults.map((result, index) => (
                     <div key={index}>
-                      Score: {result.score}, Date: {new Date(result.timestamp).toLocaleDateString()}
+                      Score: {result.score}
                     </div>
                   ))}
                 </td>
