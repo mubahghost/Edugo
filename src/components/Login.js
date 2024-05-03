@@ -36,9 +36,10 @@ function Login() {
         }
         try {
             await sendPasswordResetEmail(auth, email);
-            setMessage("Password reset email sent. Please check your email inbox.");
+            alert("Password reset email sent. Please check your email inbox.");
         } catch (error) {
             setError("Failed to send password reset email: " + error.message);
+            alert("Failed to send password reset email: " + error.message);
         }
     };
 
