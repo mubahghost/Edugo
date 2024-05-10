@@ -18,11 +18,75 @@ const Quiz = () => {
         { answerText: '6', isCorrect: false },
       ],
     },
+    { 
+      questionText: 'What is 6x6?',
+      answerOptions: [
+        { answerText: '36', isCorrect: true },
+        { answerText: '9', isCorrect: false },
+        { answerText: '7', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+      ],
+    },
+    { 
+      questionText: 'What is 5x5?',
+      answerOptions: [
+        { answerText: '9', isCorrect: false },
+        { answerText: '25', isCorrect: true },
+        { answerText: '7', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+      ],
+    },
+    { 
+      questionText: 'What is 5+6?',
+      answerOptions: [
+        { answerText: '11', isCorrect: true },
+        { answerText: '9', isCorrect: false },
+        { answerText: '7', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+      ],
+    },
+    { 
+      questionText: 'What is 8+2?',
+      answerOptions: [
+        { answerText: '9', isCorrect: false },
+        { answerText: '7', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+        { answerText: '10', isCorrect: true },
+
+      ],
+    },
+    { 
+      questionText: 'What is 10+10?',
+      answerOptions: [
+        { answerText: '9', isCorrect: false },
+        { answerText: '7', isCorrect: false },
+        { answerText: '20', isCorrect: true },
+        { answerText: '6', isCorrect: false },
+      ],
+    },
+    { 
+      questionText: 'What is 6-3?',
+      answerOptions: [
+        { answerText: '3', isCorrect: true },
+        { answerText: '9', isCorrect: false },
+        { answerText: '7', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+      ],
+    },
+    { 
+      questionText: 'What is 5+5?',
+      answerOptions: [
+        { answerText: '10', isCorrect: true },
+        { answerText: '9', isCorrect: false },
+        { answerText: '7', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+      ],
+    },
   ]);
-  const [currentQuestion, setCurrentQuestion] = useState(0); // Tracks the index of the current question
+  const [currentQuestion, setCurrentQuestion] = useState(0); // Tracks the number of the current question
   const [answers, setAnswers] = useState(Array(questions.length).fill(null)); // Records user's answers
   const [showScore, setShowScore] = useState(false); // Controls display of the score summary
-  const [score, setScore] = useState(0); // Accumulates user's score
+  const [score, setScore] = useState(0); // gives user's score
 
   // Handles logic for selecting an answer, updating the score, and navigating through the quiz
   const handleAnswerClick = async (index) => {

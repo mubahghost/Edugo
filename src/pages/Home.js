@@ -21,10 +21,10 @@ const HomePage = () => {
   const handleLearnMore = () => {
     if (!isLoggedIn) {
       alert("Login or register to view more.");  // This will display an alert if the user is not logged in
-      setShowModal(false);  // Optionally close the modal if it's open
+      setShowModal(false); 
     } else {
-      // If logged in, direct the user to another page or perform another action
-      window.location.href = "/Courses";
+  
+      window.location.href = "/Courses"; // this way it will refresh the page instead of use navigate
     }
   };
 

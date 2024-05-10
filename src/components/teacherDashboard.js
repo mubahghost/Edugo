@@ -14,15 +14,15 @@ function TeacherDashboard() {
         const studentsQuery = query(collection(firestore, "users"), where("role", "==", "student"));
         const studentsSnapshot = await getDocs(studentsQuery);
 
-        // Map over each student to fetch their quiz results
+        // scan over each student to fetch their quiz results
         const studentsData = await Promise.all(studentsSnapshot.docs.map(async (studentDoc) => {
           const studentData = studentDoc.data();
           
           // Fetch quiz results for this student based on their email
           const quizResultsQuery = query(collection(firestore, "quizResults"), where("userEmail", "==", studentData.email));
           const quizResultsSnapshot = await getDocs(quizResultsQuery);
-
-          // Here, we get the score from the quizResults and add it to the student object
+          
+          //quiz results stored to student object
           const quizResults = quizResultsSnapshot.docs.map(quizDoc => {
             const quizData = quizDoc.data();
             console.log("Quiz Data:", quizData);
