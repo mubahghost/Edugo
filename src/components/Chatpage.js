@@ -37,6 +37,7 @@ const ChatPage = () => {
       setMessages(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
 
+
     return () => unsubscribe(); // Clean up subscription on unmount
   }, []);
 
